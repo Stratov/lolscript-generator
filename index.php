@@ -179,7 +179,7 @@ if (isset($_GET['nbentre']) && $_GET['nbentre'] > 0 )
 		<option value="PRD">Produit</option>
 		<option value="">Défrichage</option>
 		</select>
-		<?php /*<input type="checkbox" value="attaquer_<?php echo $c;?>" name="attaquer_<?php echo $c;?>"> Attaqué | <input type="checkbox" value="produit_<?php echo $c;?>" name="produit_<?php echo $c;?>"/> Produit,*/ ?>
+	
 		<br> déplace la ressource :
 		<select name="depl_<?php echo $c;?>">
 		<option value="WOD">Bois</option>
