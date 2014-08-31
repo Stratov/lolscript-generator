@@ -28,7 +28,7 @@ fclose($compteur_f);
 </head>
 <body>
 <?php
-// ajouter le choix selon erreur
+
 $boucle = $_GET['boucle'];
 			$e = 1;
 			$erreur = 0;
@@ -37,8 +37,7 @@ $boucle = $_GET['boucle'];
 			{
 				
 				// récupération des numéros d'entrées
-				// $att = "attaquer_".$e."";
-				// $prd = "produit_".$e."";
+
 				$batnum = "batnum_".$e."";
 				$battype = "battype_".$e."";
 				$batcible = "batcible_".$e."";
@@ -47,35 +46,27 @@ $boucle = $_GET['boucle'];
 				$action = "action_".$e."";
 				$parret = "parret_".$e."";
 				
+				$n = $e + 1;
+				$nextbatnum = "batnum_".$n."";
+				$nextbattype = "battype_".$n."";
+				$nextaction = "action_".$n."";
+				$nextbatcible = "batcible_".$n."";
+				$nextdepl = "depl_".$n."";
+				$nextparret = "parret_".$n."";
+				
+									
+						
+
+						
+				if (isset($_GET[$action]))
+				{
 				
 				$final = "";
 				
 				$final = "".htmlspecialchars($_GET[$action])."";
 				
-				/*
-				// Attaqué ou produit (version case cochable, retiré pour éviter des erreurs)
-				if (isset($_GET[$att]))
-				{
-					$final = "ATT";
-				}
-				elseif (isset($_GET[$prd]))
-				{
-					$final = "PRD";
-				}
-				else // si rien n'a été sélectionner ou les 2, une erreur se produit
-				{
-								$laster = $erreur;
-								$erreur++;	
-				}	
-				if ($erreur > $laster) // vérification de la présence d'érreur, passe l'entrée si il y en a une
-				{
-					$e++;
-					$laster = $erreur;
-					continue;
-				}	
-				else
-				{			
-				*/				
+				 	
+						
 					// récupère le type ou/et ne numéro du bâtiment
 					if ($_GET[$battype] != "" && $_GET[$batnum] != "" && $_GET[$battype] != "numero")
 					{
@@ -122,11 +113,11 @@ $boucle = $_GET['boucle'];
 					}
 				$final .= " ".htmlspecialchars($_GET[$depl])."";
 				
-				if ($_GET[$parret] == "stop")
+				if (isset($_GET[$parret]) && $_GET[$parret] == "stop")
 				{
 					$final .= ".";
 				}	
-				
+				if ($n > 0) { echo "<br>"; }
 				if ($_GET[$comment] != "" && $_GET[$comment] != " ") // Vérification de l'existance de commentaire
 				{
 				$commentaire = htmlspecialchars($_GET[$comment]);
@@ -134,13 +125,51 @@ $boucle = $_GET['boucle'];
 				echo "# ".$commentaire."<br>";
 				}
 				
-				echo "".htmlspecialchars($final)." <br> ";
+				echo "".htmlspecialchars($final)."";
+				
+										// vérficication de l'action suivante par rapport a la précédente
+							if (isset($_GET[$nextaction]))
+							{	
+							if ($n > 0 && $_GET[$nextbatnum] == $_GET[$batnum] && $_GET[$nextbattype] == $_GET[$battype] && $_GET[$nextaction] == $_GET[$action])
+							{
+								if ($_GET[$nextbattype] != "" && $_GET[$nextbatnum] == "" && $_GET[$nextbattype] == "numero")
+									{ 
+										$laster = $erreur;
+										$erreur++;
+										
+									}
+									else
+									{	
+								$nextfinal = ", MOV ".htmlspecialchars($_GET[$nextbatcible])." ".htmlspecialchars($_GET[$nextdepl])."";
+								
+								
+									if (isset($_GET[$nextparret]) && $_GET[$nextparret] == "stop")
+									{
+										$nextfinal .= ".";
+									}	
+									echo $nextfinal;
+								$e++;	
+								}
+								if ($erreur > $laster)
+								{
+								$e++;
+								$laster = $erreur;
+								continue;
+								}
+								
+								
+							}
+							}
 				
 				$e++;
-				
 				}
 				
-			}
+
+				
+				}
+				}
+				
+			
 			echo "<br><br><br><br><br>";
 			if ($erreur > 0) // Avertissement de la présence d'erreur si il y en a
 			{
