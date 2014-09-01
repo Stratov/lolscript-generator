@@ -12,7 +12,6 @@ $boucle = $_GET['boucle'];
 			$erreur = 0;
 			$laster = 0;
 			$suiv = 0;
-			$prec = 0;
 			for($ee = 1; $ee <= $boucle; $ee++)
 			{
 				
