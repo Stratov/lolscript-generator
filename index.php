@@ -83,6 +83,7 @@ if (isset($_GET['nbentre']) && $_GET['nbentre'] > 0 )
 		<option value="WDM">Moulin à vent</option>
 		<option value="BKY">Boulangerie</option>
 		<option value="PFD">Rizière</option>
+		<option value="SLN">Saline</option>
 		<option value="ORC">Verger</option>
 		<option value="GDN">Potager</option>
 		<option value="VYD">Vignoble</option>
@@ -175,6 +176,7 @@ if (isset($_GET['nbentre']) && $_GET['nbentre'] > 0 )
 		<option value="FLR">Farine</option>
 		<option value="BRD">Pain</option>
 		<option value="RCE">Riz</option>
+		<option value="SLT">Sel</option>
 		<option value="BER">Bière</option>
 		<option value="FRT">Fruits</option>
 		<option value="VGT">Légumes</option>
