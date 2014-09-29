@@ -77,6 +77,7 @@ if (isset($_GET['nbentre']) && $_GET['nbentre'] > 0 )
 		<option value="ARM">Armurerie</option>
 		<option value="ARF">Fabrique d'armures</option>
 		<option value="STB">Ecuries</option>
+		<option value="SHD">Bergerie</option>
 		</optgroup>
 		<optgroup label="Alimentation">
 		<option value="FLD">Champ de blé</option>
